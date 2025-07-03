@@ -74,3 +74,8 @@ _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기�
 ```bash
 # 가상 환경이 활성화된 상태에서 (프롬프트에 (mediapipe_env) 확인)
 sudo /home/chanwon/mediapipe_env/bin/python3 gesture_controller.py
+
+
+---
+- 로컬 터미널에서 LLm 모델 ollama mistral을 실행합니다.
+python3 start_command.py

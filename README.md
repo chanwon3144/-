@@ -1,7 +1,7 @@
 # IoT 기반 제스처 스마트홈 케어 시스템
 
 ![Project Logo or Diagram Placeholder](https://via.placeholder.com/600x300?text=Gesture+Smart+Home+System)
-_프로젝트를 나타내는 로고나 다이어그램 이미지를 여기에 추가하세요._
+_프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기에 추가하면 좋습니다._
 
 ## 💡 프로젝트 소개 (Introduction)
 
@@ -9,7 +9,7 @@ _프로젝트를 나타내는 로고나 다이어그램 이미지를 여기에 �
 
 ## ✨ 주요 기능 (Features)
 
-* **정교한 손 제스처 인식:** MediaPipe를 활용하여 웹캠으로 사용자의 손을 실시간으로 감지하고 다양한 제스처(예: 손 펴기, 주먹 쥐기)를 인식합니다.
+* **정교한 손 제스처 인식:** **직접 수집하고 학습시킨 2000장 이상의 손동작 데이터셋을 활용하여** MediaPipe 기반의 손 감지 및 제스처 인식의 정확도를 높였습니다. 웹캠으로 사용자의 손을 실시간으로 감지하고 다양한 제스처(예: 손 펴기, 주먹 쥐기)를 인식합니다.
 * **LLM 기반 의도 파악:** 인식된 제스처 정보를 경량 LLM(대규모 언어 모델)인 Ollama의 Gemma 1B 모델에 전달하여 사용자의 의도(예: 조명 켜기, 에어컨 끄기)를 파악하고 명령을 생성합니다.
 * **라즈베리 파이 GPIO 제어:** LLM이 생성한 명령에 따라 라즈베리 파이의 GPIO(General Purpose Input/Output) 핀을 제어하여 실제 물리적인 스마트 기기(예: LED, 버저, 모터 등)를 작동시킵니다.
 * **직관적인 음성 피드백:** TTS(Text-to-Speech)를 통해 시스템의 상태나 LLM의 응답을 음성으로 사용자에게 알려주어 사용 편의성을 높입니다.
@@ -21,8 +21,8 @@ _프로젝트를 나타내는 로고나 다이어그램 이미지를 여기에 �
 * **Hardware Interface:** `RPi.GPIO`
 * **Large Language Model (LLM):** Ollama (Local LLM Server), Gemma 1B
 * **Text-to-Speech (TTS):** `gTTS`
-* **Hardware:** Raspberry Pi (권장: 4 또는 5), 웹캠, 스피커, LED (또는 제어할 기타 스마트 기기)
 * **Communication:** `requests` (Ollama API 통신)
+* **Hardware:** Raspberry Pi (권장: 4 또는 5), USB 웹캠, 스피커, LED (또는 제어할 기타 스마트 기기)
 
 ## 🚀 시작하기 (Getting Started)
 
@@ -33,7 +33,7 @@ _프로젝트를 나타내는 로고나 다이어그램 이미지를 여기에 �
 * 웹캠 (라즈베리 파이와 호환되는 USB 웹캠)
 * 스피커 (TTS 음성 출력을 위해 필요)
 * 인터넷 연결 (Ollama 모델 다운로드 및 `gTTS` 사용 시 필요)
-* Ollama 서버 설치 및 Gemma 1B 모델 다운로드:
+* **Ollama 서버 설치 및 Gemma 1B 모델 다운로드:**
     ```bash
     curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
     ollama run gemma:2b # gemma:2b 모델 다운로드 및 실행 (최초 1회)
@@ -58,7 +58,7 @@ _프로젝트를 나타내는 로고나 다이어그램 이미지를 여기에 �
     ```bash
     pip install opencv-python-headless mediapipe RPi.GPIO requests gtts
     ```
-    _(만약 `opencv-python-headless` 설치에 문제가 있다면 `opencv-python`으로 시도하거나, 라즈베리 파이의 Python3에 직접 `sudo pip3 install ...`하는 방법을 고려할 수 있습니다.)_
+    _(`opencv-python-headless` 대신 `opencv-python`을 사용할 수도 있습니다.)_
 
 ### 🔌 하드웨어 연결 (Hardware Setup)
 

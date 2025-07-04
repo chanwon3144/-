@@ -67,7 +67,7 @@ _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기�
     * LED의 **음극(-)**을 적절한 **저항(예: 220옴~330옴)**을 통해 라즈베리 파이의 **GND(접지) 핀**에 연결합니다.
     * _자세한 내용은 라즈베리 파이 GPIO 핀아웃 다이어그램을 참고하세요._
 
-## 🏃‍♂️ 실행 방법 (How to Run)
+## 🏃‍♂️ 실행 방법 (How to Run) /[detect.py, gpio_server.py, start_command.py]
 
 가상 환경이 활성화된 터미널에서 다음 명령어를 실행합니다. **GPIO 제어를 위해 `sudo` 권한이 필수적이며, 가상 환경의 파이썬 인터프리터를 명시적으로 지정해야 합니다.**
 
@@ -86,7 +86,7 @@ python3 detect.py --weights best.pt --source 0 --conf 0.4 --img 416 --device cpu
 # HTTP 요청으로 간접 제어를 위한 Flask 서버 띄우기
 python3 gpio_server.py
 ```
-🛠️ 프로젝트 실행 방법
+## 🏃‍♂️ 실행 방법 (project_ai)
 
 본 프로젝트는 2개의 터미널을 사용해 실행됩니다.
 🖥️ 터미널 1 – GPIO 서버 실행

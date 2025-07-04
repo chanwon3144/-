@@ -79,4 +79,7 @@ sudo /home/chanwon/mediapipe_env/bin/python3 gesture_controller.py
 ```
 # 로컬 터미널에서 LLm 모델 ollama mistral을 실행합니다.
 python3 start_command.py
+
+# 카메라 ON
+python3 detect.py --weights best.pt --source 0 --conf 0.4 --img 416 --device cpu
 ```

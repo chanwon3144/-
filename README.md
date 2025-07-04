@@ -86,3 +86,37 @@ python3 detect.py --weights best.pt --source 0 --conf 0.4 --img 416 --device cpu
 # HTTP 요청으로 간접 제어를 위한 Flask 서버 띄우기
 python3 gpio_server.py
 ```
+🛠️ 프로젝트 실행 방법
+
+본 프로젝트는 2개의 터미널을 사용해 실행됩니다.
+🖥️ 터미널 1 – GPIO 서버 실행
+
+    프로젝트 디렉토리로 이동:
+
+cd /home/chanwon/YOLO/yolov5/project_ai/
+
+GPIO 서버 실행 (루트 권한 필요):
+
+    sudo python3 gpio_server.py
+
+        실행 후 Running on http://0.0.0.0:5000 메시지가 출력되면 성공입니다.
+
+        ⚠️ 이 터미널은 종료하지 말고 계속 열어두세요.
+
+🖥️ 터미널 2 – 제스처 인식 및 제어 실행
+
+    같은 디렉토리로 이동:
+
+cd /home/chanwon/YOLO/yolov5/project_ai/
+
+가상 환경 활성화:
+
+source .env/bin/activate
+
+    프롬프트에 (.env) 표시가 나타나면 성공입니다.
+
+제스처 인식 코드 실행:
+
+python3 main.py
+
+    웹캠 화면이 나타나고 실시간 제스처 인식이 시작됩니다.

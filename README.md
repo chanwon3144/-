@@ -82,4 +82,7 @@ python3 start_command.py
 
 # 카메라 ON
 python3 detect.py --weights best.pt --source 0 --conf 0.4 --img 416 --device cpu
+
+# HTTP 요청으로 간접 제어를 위한 Flask 서버 띄우기
+python3 gpio_server.py
 ```

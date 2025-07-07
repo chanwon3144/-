@@ -66,6 +66,8 @@ _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기�
     * 라즈베리 파이 **GPIO 17번 핀**과 LED의 **양극(+)**을 연결합니다.
     * LED의 **음극(-)**을 적절한 **저항(예: 220옴~330옴)**을 통해 라즈베리 파이의 **GND(접지) 핀**에 연결합니다.
     * _자세한 내용은 라즈베리 파이 GPIO 핀아웃 다이어그램을 참고하세요._
+![image](https://github.com/user-attachments/assets/e7d6eb58-bc17-43c6-81a1-95f3065a03ce)
+
 
 ## 🏃‍♂️ 실행 방법 (How to Run) /[detect.py, gpio_server.py, start_command.py]
 

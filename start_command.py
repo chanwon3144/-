@@ -4,9 +4,10 @@ def ask_ollama(prompt):
     response = requests.post(
         "http://localhost:11434/api/generate",
         json={
-            "model": "mistral",
+            "model": "gemma3:1b",
             "prompt": f"""
-다음 문장을 light_on / light_off / motor_on / motor_off  중 하나로만 변환해줘.
+너는 smart home을 제어하는 모델이야 다음 문장을 반드시 아래 중 하나로만 변환해: light_on / light_off / motor_on / motor_off
+예시:
 - "불 켜" → light_on
 - "조명 켜줘" → light_on
 - "불 꺼줘" → light_off
@@ -14,7 +15,9 @@ def ask_ollama(prompt):
 - "light on" → light_on
 - "light off" → light_off
 - "선풍기 켜줘" → motor_on
-- "선풍기 꺼줘" → motor_off
+- "선풍기 꺼줘" → motor_off 
+- "fan on" → motor_on
+- "fan off" → motor_off
 
 문장: "{prompt}"
 정답:""",

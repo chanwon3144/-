@@ -7,22 +7,34 @@ _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기�
 
 본 프로젝트는 **IoT(사물 인터넷) 기반의 제스처 스마트홈 케어 시스템**입니다. 사용자의 손 제스처를 인식하여 집 안의 스마트 기기를 직관적으로 제어할 수 있도록 돕습니다. 특히 신체가 불편한 노약자나 장애인 등 특정 사용자층에게 더욱 편리하고 자연스러운 스마트홈 환경을 제공하는 것을 목표로 합니다.
 
-## ✨ 주요 기능 (Features)
+## ✨ 주요 기능
 
-* **정교한 손 제스처 인식:** **직접 수집하고 학습시킨 2000장 이상의 손동작 데이터셋을 활용하여** MediaPipe 기반의 손 감지 및 제스처 인식의 정확도를 높였습니다. 웹캠으로 사용자의 손을 실시간으로 감지하고 다양한 제스처(예: 손 펴기, 주먹 쥐기)를 인식합니다.
-* **LLM 기반 의도 파악:** 인식된 제스처 정보를 경량 LLM(대규모 언어 모델)인 Ollama의 **Mistral 모델**에 전달하여 사용자의 의도(예: 조명 켜기, 에어컨 끄기)를 파악하고 명령을 생성합니다.
-* **라즈베리 파이 GPIO 제어:** LLM이 생성한 명령에 따라 라즈베리 파이의 GPIO(General Purpose Input/Output) 핀을 제어하여 실제 물리적인 스마트 기기(예: LED, 버저, 모터 등)를 작동시킵니다.
-* **직관적인 음성 피드백:** TTS(Text-to-Speech)를 통해 시스템의 상태나 LLM의 응답을 음성으로 사용자에게 알려주어 사용 편의성을 높입니다.
+- ✋ **정교한 손 제스처 인식**  
+  > MediaPipe 기반 실시간 손 인식 + 자체 수집한 2000장 이상의 데이터셋
 
-## 🛠️ 기술 스택 (Technologies)
+- 🧠 **LLM 기반 사용자 의도 파악**  
+  > Ollama 로컬 서버에 구동된 Gemma 3 1B 모델을 통해 사용자의 의도 파악
 
-* **Language:** Python 3
-* **Computer Vision:** MediaPipe, OpenCV (`cv2`)
-* **Hardware Interface:** `RPi.GPIO`
-* **Large Language Model (LLM):** Ollama (Local LLM Server), **Mistral**
-* **Text-to-Speech (TTS):** `gTTS`
-* **Communication:** `requests` (Ollama API 통신)
-* **Hardware:** Raspberry Pi (권장: 4 또는 5), USB 웹캠, 스피커, LED (또는 제어할 기타 스마트 기기)
+- 💡 **GPIO를 통한 스마트 기기 제어**  
+  > 제스처를 통해 LED, 모터 등의 물리 기기 제어
+
+- 🧍 **YOLOv5 기반 사람 감지 및 부저 알림**  
+  > 사람 감지 시 자동으로 부저 울림
+
+- 🔊 **TTS 기반 음성 피드백**  
+  > 시스템 응답을 음성으로 출력하여 사용 편의성 향상
+  
+## 🛠️ 기술 스택
+
+| 분류 | 사용 기술 |
+|------|-----------|
+| Language | Python 3 |
+| Computer Vision | MediaPipe, OpenCV, YOLOv5 |
+| AI/LLM | Ollama (Gemma 3 1B) |
+| TTS | gTTS |
+| GPIO 제어 | RPi.GPIO |
+| 하드웨어 | Raspberry Pi (4 이상), 웹캠, 스피커, LED, 부저, 모터 등 |
+
 
 ## 🚀 시작하기 (Getting Started)
 

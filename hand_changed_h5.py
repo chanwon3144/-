@@ -2,6 +2,8 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
+import requests
+import time
 
 # -----------------------------
 # 모델 로드 및 클래스
@@ -17,6 +19,26 @@ hands = mp_hands.Hands(
     static_image_mode=False, max_num_hands=1, min_detection_confidence=0.7
 )
 mp_draw = mp.solutions.drawing_utils
+
+# -----------------------------
+# GPIO 서버로 명령 전송 함수
+# -----------------------------
+def send_to_gpio_server(cmd):
+    try:
+        url = "http://localhost:5000/control"
+        res = requests.post(url, json={"cmd": cmd})
+        print(f"📡 명령 전송됨: {cmd}, 응답: {res.text}")
+    except requests.exceptions.ConnectionError:
+        print("❌ GPIO 서버 연결 실패. 'gpio_server.py' 실행 확인")
+    except Exception as e:
+        print(f"❌ 전송 실패 ({cmd}):", e)
+
+# -----------------------------
+# 제스처 상태 추적 변수
+# -----------------------------
+last_command_sent = None
+last_command_timestamp = time.time()
+command_debounce_time = 2  # 초
 
 # -----------------------------
 # 웹캠 열기
@@ -65,18 +87,26 @@ while True:
             class_idx = np.argmax(preds[0])
             confidence = preds[0][class_idx]
 
-            # 0.5 이상만 출력
             if confidence > 0.8:
-                label = f"{class_names[class_idx]} ({confidence:.2f})"
-                cv2.putText(
-                    frame,
-                    label,
-                    (x_min, y_min - 10),
-                    cv2.FONT_HERSHEY_SIMPLEX,
-                    1,
-                    (0, 255, 0),
-                    2,
-                )
+                gesture = class_names[class_idx]
+                label = f"{gesture} ({confidence:.2f})"
+
+                current_time = time.time()
+                if (gesture != last_command_sent) or (current_time - last_command_timestamp > command_debounce_time):
+                    if gesture == "fan_on":
+                        send_to_gpio_server("motor_on")
+                    elif gesture == "fan_off":
+                        send_to_gpio_server("motor_off")
+                    elif gesture == "light_on":
+                        send_to_gpio_server("light_on")
+                    elif gesture == "light_off":
+                        send_to_gpio_server("light_off")
+
+                    last_command_sent = gesture
+                    last_command_timestamp = current_time
+
+                # 표시
+                cv2.putText(frame, label, (x_min, y_min - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
                 cv2.rectangle(frame, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
 
             # 랜드마크 그리기
@@ -89,4 +119,3 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-

@@ -116,8 +116,11 @@ if __name__ == "__main__":
     threading.Thread(target=run_flask_server, daemon=True).start()
     threading.Thread(target=send_worker, daemon=True).start()
     time.sleep(1)
+    
+import sys
 
     while True:
+        sys.stdout.flush()
         print("", flush=True)  # 버퍼 깨끗하게
         user_input = input("명령 입력 (exit 입력 시 종료): ")
         if user_input.lower() == "exit":
@@ -130,22 +133,3 @@ if __name__ == "__main__":
             cmd_queue.put(cmd)
         else:
             print("⚠️ 실행할 명령이 아님 (unknown)")
-            
-🚀 Flask 음성 서버 시작 (port 8000)
- * Serving Flask app 'combine'
- * Debug mode: off
-
-명령 입력 (exit 입력 시 종료): 선풍기랑 불 꺼줘
-📥 LLM 응답: light_off
-
-명령 입력 (exit 입력 시 종료): 📡 Pi 응답: {"status":"light_off"}
-
-🔊 스피커 응답: OK
-선풍기 꺼줘
-📥 LLM 응답: motor_off
-
-명령 입력 (exit 입력 시 종료): 📡 Pi 응답: {"status":"motor_off"}
-
-🔊 스피커 응답: OK
-불이랑 선풍기 켜줘
-📥 LLM 응답: motor_on

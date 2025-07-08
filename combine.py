@@ -118,6 +118,7 @@ if __name__ == "__main__":
     time.sleep(1)
 
     while True:
+        print("", flush=True)  # 버퍼 깨끗하게
         user_input = input("명령 입력 (exit 입력 시 종료): ")
         if user_input.lower() == "exit":
             break

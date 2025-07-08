@@ -138,3 +138,23 @@ source .env/bin/activate
 python3 main.py
 
     웹캠 화면이 나타나고 실시간 제스처 인식이 시작됩니다.
+
+
+
+#### local_server.py 실행방법
+✅ 필수 패키지 설치
+
+sudo apt update
+sudo apt install mpg123
+pip install flask gtts requests
+
+✅ 라즈베리파이 GPIO 사용 시 (선택)
+
+pip install RPi.GPIO
+
+✅ 실행 방법
+
+python3 local_sever.py
+
+음성 안내 + 스마트홈 명령어 처리 서버가 실행됩니다.
+(gTTS → speech.mp3 생성 → mpg123로 재생)

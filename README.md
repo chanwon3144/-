@@ -3,7 +3,7 @@
 ![Project Logo or Diagram Placeholder](https://via.placeholder.com/600x300?text=Gesture+Smart+Home+System)
 _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기에 추가하면 좋습니다._
 
-PPT: https://www.canva.com/design/DAGsKYK5d9g/srHhvtxA6RWmiJ9MKy7bpw/edit
+PPT: https://www.canva.com/design/DAGsKYK5d9g/srHhvtxA6RWmiJ9MKy7bpw/edit?utm_content=DAGsKYK5d9g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## 💡 프로젝트 소개 (Introduction)
 

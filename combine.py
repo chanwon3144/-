@@ -91,19 +91,19 @@ def send_worker():
     while True:
         cmd = cmd_queue.get()
         try:
-            # Raspberry Pi 전송
             res1 = requests.post("http://10.10.15.195:5000/control", json={"cmd": cmd})
-            print("📡 Pi 응답:", res1.text)
+            print("📡 Pi 응답:", res1.text, flush=True)
         except Exception as e:
-            print("❌ Pi 전송 실패:", e)
+            print("❌ Pi 전송 실패:", e, flush=True)
 
         try:
-            # 스피커 전송
             res2 = requests.post("http://localhost:8000/notify", json={"cmd": cmd})
-            print("🔊 스피커 응답:", res2.text)
+            print("🔊 스피커 응답:", res2.text, flush=True)
         except Exception as e:
-            print("❌ 스피커 전송 실패:", e)
+            print("❌ 스피커 전송 실패:", e, flush=True)
+        
         cmd_queue.task_done()
+
 
 
 # -----------------------------
@@ -116,11 +116,11 @@ if __name__ == "__main__":
     threading.Thread(target=run_flask_server, daemon=True).start()
     threading.Thread(target=send_worker, daemon=True).start()
     time.sleep(1)
-    
-import sys
+
+
 
     while True:
-        sys.stdout.flush()
+
         print("", flush=True)  # 버퍼 깨끗하게
         user_input = input("명령 입력 (exit 입력 시 종료): ")
         if user_input.lower() == "exit":

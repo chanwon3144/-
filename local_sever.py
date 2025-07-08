@@ -17,7 +17,7 @@ app = Flask(__name__)
 def speak(text):
     tts = gTTS(text=text, lang='ko')
     tts.save("speech.mp3")
-    subprocess.run(["mpg123", "-q"," speech.mp3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    os.system("mpg123 -q speech.mp3")
 
 @app.route("/notify", methods=["POST"])
 def notify():
@@ -51,6 +51,28 @@ def ask_ollama(prompt):
             "model": "gemma3:1b",
             "prompt": f"""
 너는 smart home을 제어하는 모델이야 다음 문장을 반드시 아래 중 하나로만 변환해. 근데 문장은 직접 명령일 수도 있고 감정/상태 표현일 수도 있어: light_on / light_off / motor_on / motor_off
+예시:
+- "불 켜" → light_on
+- "조명 켜줘" → light_on
+- "불 꺼줘" → light_off
+- "조명 꺼" → light_off
+- "light on" → light_on
+- "light off" → light_off
+- "선풍기 켜줘" → motor_on
+- "선풍기 꺼줘" → motor_off
+- "fan on" → motor_on
+- "fan off" → motor_off
+- "덥다" → motor_on
+- "춥다" → motor_off
+- "어둡다" → light_on
+- "밝다" → light_off
+- "자야겠다" → light_off
+- "너무 추워" → motor_off
+- "너무 춥다" → motor_off
+- "너무 밝아" → light_off
+- "너무 어두워" → light_on
+- "너무 더워" → motor_on
+- "너무 덥다" → motor_on
 문장: "{prompt}"
 정답:""",
             "stream": False
@@ -94,4 +116,3 @@ if __name__ == "__main__":
             send_to_speaker(cmd)
         else:
             print("⚠️ 실행할 명령이 아님 (unknown)")
-

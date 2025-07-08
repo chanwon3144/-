@@ -5,6 +5,8 @@ _프로젝트를 나타내는 로고나 시스템 구성도 이미지를 여기�
 
 PPT: https://www.canva.com/design/DAGsKYK5d9g/srHhvtxA6RWmiJ9MKy7bpw/edit?utm_content=DAGsKYK5d9g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
+https://www.canva.com/design/DAGsi3FP6Eg/ZhSTPSEdLGAykr1GCF68Zw/edit?utm_content=DAGsi3FP6Eg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ## 💡 프로젝트 소개 (Introduction)
 
 본 프로젝트는 **IoT(사물 인터넷) 기반의 제스처 스마트홈 케어 시스템**입니다. 사용자의 손 제스처를 인식하여 집 안의 스마트 기기를 직관적으로 제어할 수 있도록 돕습니다. 특히 신체가 불편한 노약자나 장애인 등 특정 사용자층에게 더욱 편리하고 자연스러운 스마트홈 환경을 제공하는 것을 목표로 합니다.

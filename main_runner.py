@@ -5,9 +5,9 @@ import os
 # 각 스크립트 파일명 (실제 경로에 맞게 수정 필요)
 # 예를 들어, 모든 파일이 같은 디렉토리에 있다면 파일명만 적어도 됩니다.
 SCRIPTS = [
-    "hand_changed_h5.py",    # 제스처 인식 코드 (이름이 gesture_recognition.py로 바뀌었으면 그 이름으로)
-    "human_detect_buzzer.py" # 사람 인식 코드
-        # GPIO 제어 서버
+    "gpio_server.py",
+    "gesture_debounce_success.py",    # 제스처 인식 코드 (이름이 gesture_recognition.py로 바뀌었으면 그 이름으로)
+    
 ]
 
 # 실행된 프로세스들을 저장할 리스트
@@ -37,7 +37,7 @@ except KeyboardInterrupt:
     for process in processes:
         if process.poll() is None: # 아직 실행 중인 프로세스인 경우
             process.terminate() # 프로세스에 종료 신호를 보냄 (Graceful termination)
-            print(f"❌ 프로세스 {process.args[2]} 종료 신호 전송.")
+            print(f"❌ 프로세스 {script_name} 종료 신호 전송.")
     
     # 프로세스들이 완전히 종료될 때까지 기다림 (선택 사항)
     for process in processes:

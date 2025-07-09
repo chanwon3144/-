@@ -1,4 +1,5 @@
 import cv2
+import requests
 from time import sleep, time
 from ultralytics import YOLO
 
@@ -12,13 +13,22 @@ except (ImportError, Exception):
     print("알림: 라즈베리 파이 환경이 아닙니다. 부저 대신 콘솔에 메시지를 출력합니다.")
     IS_RASPBERRY_PI = False
 
+# --- GPIO 및 스피커 전송 함수 ---
+def send_to_speaker(cmd):
+    try:
+        speaker_url = "http://10.10.15.167:8000/notify"  # 또는 실제 스피커 서버 IP
+        res = requests.post(speaker_url, json={"cmd": cmd})
+        print(f"🔊 스피커 응답({cmd}):", res.text)
+    except Exception as e:
+        print(f"❌ 스피커 전송 실패 ({cmd}):", e)
+
 # --- YOLOv5 모델 로드 ---
 print("YOLOv5 모델을 로드하는 중입니다...")
 model = YOLO("yolov5n.pt")  # 'n' 모델은 가볍고 빠릅니다.
 PERSON_CLASS_ID = 0  # YOLO 모델에서 'person' 클래스는 0번입니다.
 
 # --- 웹캠 설정 ---
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 if not cap.isOpened():
     print("오류: 웹캠을 열 수 없습니다.")
     exit()
@@ -46,6 +56,8 @@ def buzzer_on():
             print(f"부저 재생 중 오류 발생: {e}")
     else:
         print("🎶 딩동! (사람 감지 알림)")
+        
+    send_to_speaker("person_detected")
 
 def buzzer_off():
     """사람이 사라졌을 때 호출되는 함수"""

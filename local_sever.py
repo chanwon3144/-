@@ -14,10 +14,15 @@ import subprocess
 # -----------------------------
 app = Flask(__name__)
 
-def speak(text):
-    tts = gTTS(text=text, lang='ko')
-    tts.save("speech.mp3")
-    os.system("mpg123 -q speech.mp3")
+def speak(text_or_file):
+    """파일이 존재하면 파일 재생, 아니면 gTTS"""
+    if os.path.exists(text_or_file):
+        os.system(f"mpg123 '{text_or_file}'")
+    else:
+        from gtts import gTTS
+        tts = gTTS(text=text_or_file, lang='ko')
+        tts.save("speech.mp3")
+        os.system("mpg123 -q speech.mp3")
 
 @app.route("/notify", methods=["POST"])
 def notify():
@@ -25,13 +30,15 @@ def notify():
     cmd = data.get("cmd")
 
     if cmd == "light_on":
-        speak("조명을 켭니다")
+        speak("light on.mp3")
     elif cmd == "light_off":
-        speak("조명을 끕니다")
+        speak("light off.mp3")
     elif cmd == "motor_on":
-        speak("선풍기를 켭니다")
+        speak("fan on.mp3")
     elif cmd == "motor_off":
-        speak("선풍기를 끕니다")
+        speak("fan off.mp3")
+    elif cmd == "person_detected":
+        speak("human.mp3")
     else:
         print("🔇 명령 없음:", cmd)
 
@@ -56,23 +63,24 @@ def ask_ollama(prompt):
 - "조명 켜줘" → light_on
 - "불 꺼줘" → light_off
 - "조명 꺼" → light_off
+- "밝다" → light_off
+- "덥다" → motor_on
+- "너무 어두워" → light_on
+- "너무 덥다" → motor_on
+- "춥다" → motor_off
+- "어둡다" → light_on
 - "light on" → light_on
 - "light off" → light_off
 - "선풍기 켜줘" → motor_on
 - "선풍기 꺼줘" → motor_off
 - "fan on" → motor_on
 - "fan off" → motor_off
-- "덥다" → motor_on
-- "춥다" → motor_off
-- "어둡다" → light_on
-- "밝다" → light_off
+- "너무 더워" → motor_on
 - "자야겠다" → light_off
 - "너무 추워" → motor_off
 - "너무 춥다" → motor_off
 - "너무 밝아" → light_off
-- "너무 어두워" → light_on
-- "너무 더워" → motor_on
-- "너무 덥다" → motor_on
+
 문장: "{prompt}"
 정답:""",
             "stream": False

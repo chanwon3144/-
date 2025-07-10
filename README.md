@@ -6,6 +6,8 @@
 
 **PPT:** [https://www.canva.com/design/DAGsKYK5d9g/srHhvtxA6RWmiJ9MKy7bpw/edit?utm_content=DAGsKYK5d9g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGsKYK5d9g/srHhvtxA6RWmiJ9MKy7bpw/edit?utm_content=DAGsKYK5d9g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
+초안: https://www.canva.com/design/DAGsp-QF_tU/j4NEllfYvNJRnHNS1coWew/edit?utm_content=DAGsp-QF_tU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
 ---
 
 ## 💡 프로젝트 소개 (Introduction)
